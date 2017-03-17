@@ -17,38 +17,31 @@ letters specifies the register "name", as such:
 
 ### Data manipulation
 
-* `im??` - IMmediate load of hex ?? in register L
-
-* `move` - Move register R to register L
-
-* `swap` - Swap the values of the registers
-
-* `summ` - Add register R to register L
-
-* `subt` - Subtract register R from register L, store in L
-
-* `mult` - Multiply register R by register L, store in L
-
-* `andd` - Bitwise AND L and R into L
-
-* `orrr` - Bitwise OR L and R into L
-
-* `xorr` - Bitwise XOR L and R into L
-
-* `sf??` - Bitshift L by 2's-complement hex ??
-
-* `rt??` - Bitrotate L by 2's-complement hex ??
+| Opcode | Description
+|--------|--------------------------------------------------
+| `im??` | IMmediate load of hex ?? in register L
+| `move` | Move register R to register L
+| `swap` | Swap the values of the registers
+| `summ` | Add register R to register L
+| `subt` | Subtract register R from register L, store in L
+| `mult` | Multiply register R by register L, store in L
+| `andd` | Bitwise AND L and R into L
+| `orrr` | Bitwise OR L and R into L
+| `xorr` | Bitwise XOR L and R into L
+| `sf??` | Bitshift L by 2's-complement hex ??
+| `rt??` | Bitrotate L by 2's-complement hex ??
 
 ### Memory and IO
 
-* `load` - Copy value from memory at R to register L
-
-* `stor` - Copy value from register L to memory at R
-
-* `disp` - Write to port L value of register R
-
-* `read` - Read from port L to register R
+| Opcode | Description
+|--------|--------------------------------------------------
+| `load` | Copy value from memory at R to register L
+| `stor` | Copy value from register L to memory at R
+| `disp` | Write to port L value of register R
+| `read` | Read from port L to register R
 
 ### Flow control
 
-* `go??` - Short relative jump 2's-complement hex ??
+| Opcode | Description
+|--------|--------------------------------------------------
+| `go??` | Short relative jump 2's-complement hex ??
