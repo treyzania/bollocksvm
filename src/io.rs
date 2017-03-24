@@ -1,7 +1,7 @@
+use std::cell::RefCell;
 use std::fs::File;
 use std::io::*;
 use std::io::BufWriter;
-use std::io::prelude::*;
 
 pub trait IoPort {
 
@@ -13,31 +13,34 @@ pub trait IoPort {
 
 }
 
-struct FdWriteIoPort<'a> {
-	writer: &'a mut BufWriter<File>
+pub struct FdWriteIoPort {
+	writer: RefCell<BufWriter<File>>
 }
 
-impl<'a> FdWriteIoPort<'a> {
 
-	pub fn new<'b>(desc: File) -> FdWriteIoPort<'b> {
+impl FdWriteIoPort {
 
-		let mut bw = BufWriter::new(desc);
+	pub fn new(desc: File) -> FdWriteIoPort {
+
+		let bw = BufWriter::new(desc);
 		FdWriteIoPort {
-			writer: panic!("this doesn't work") // FIXME Lifetimes suck.
+			writer: RefCell::new(bw)
 		}
 
 	}
 
 }
 
-impl<'a> IoPort for FdWriteIoPort<'a> {
+impl IoPort for FdWriteIoPort {
 
 	fn read(&self) -> u8 {
 		0 // Do nothing.
 	}
 
 	fn write(&self, value: u8) -> () {
-		// FIXME self.writer.write(&[value]);
+		match self.writer.borrow_mut().write(&[value]) {
+			Ok(_) => (), Err(_) => ()
+		}
 	}
 
 }
